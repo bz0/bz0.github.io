@@ -1,0 +1,47 @@
+title: log::write
+description: 試行錯誤を記録する
+author: bz0
+github: https://github.com/bz0
+about: web developer Linux / PHP / Go / MySQL / Javascript / Vue
+avatar_url: https://pbs.twimg.com/profile_images/1102204635320705024/21EEcFEX.jpg
+
+enableTags: true
+tagarray: []
+
+collections:
+  project:
+    output: true
+    permalink: /project/:path/
+
+social:
+    - icon: fa-twitter
+      link: "https://twitter.com/xxxbz0"
+    - icon: fa-github
+      link: "https://github.com/bz0"
+
+share:
+  twitter_username: github.io
+  fb_appid: 1749788565247320
+
+urls:
+    - text: About Me
+      url: /about/
+    - text: XML Feed
+      url: /feed.xml
+
+url: "https://bZ0.github.io"
+baseurl: ""
+paginate: 20
+per_page: 20
+paginate_path: "/page/:num/"
+markdown: kramdown
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: ['development']
