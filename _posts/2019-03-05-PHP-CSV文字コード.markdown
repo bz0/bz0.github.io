@@ -1,0 +1,57 @@
+---
+title: PHP CSV文字コード
+layout: post
+date: '2019-03-05 22:37:00 +0900'
+categories:
+- PHP
+---
+
+## CSVの文字コード
+
+[https://uxmilk.jp/48923](https://uxmilk.jp/48923){:target="_blank"}  
+[https://qiita.com/mpyw/items/2795bef3ed561f4cf4e9](https://qiita.com/mpyw/items/2795bef3ed561f4cf4e9){:target="_blank"}  
+
+- アプリケーションによって文字コードの判別がつかない場合がある
+    - 曲者がExcel
+    - 「Mac版Microsoft Excel」で表示させるためには「BOM付きUTF-16LE」かつ「TSV形式」でないとダメ
+- WindowsとMacでは改行コードが異なる
+    - MacのExcel等で編集→Windowsで開くと文字化けする
+- MacとWindowsで使いたい場合
+    - Excel使わない前提で「SJIS-win」(Mac影響ある？未検証)
+    - Excel使わない・特殊文字が表示できなくても気にしないなら「SJIS」
+
+
+### 疑問
+
+- SJISだとMac / Windowsでホントに文字化けしない？（特殊文字除く）
+- SJIS-winだとMacで文字化けする？
+
+### SJIS
+
+[https://alaki.co.jp/blog/?p=1236](https://alaki.co.jp/blog/?p=1236){:target="_blank"}  
+
+- Microsoft製品の基本文字コードとして現在もExcelなどではよく見かける
+- 特殊文字（①㈱など）が文字化けする
+    - Shift-JISコードの「5c」が「\」と被っておかしくなる
+    - [http://www.kent-web.com/pubc/garble.html](http://www.kent-web.com/pubc/garble.html){:target="_blank"}
+- ガラケーの基本文字コード
+
+### BOM付き
+
+[https://answers.microsoft.com/ja-jp/msoffice/forum/all/winmac-%E7%89%88%E3%81%AE-excel-2016-%E3%81%A7-csv/10029a18-5b51-4e02-875b-ea2573f8bd0f](https://answers.microsoft.com/ja-jp/msoffice/forum/all/winmac-%E7%89%88%E3%81%AE-excel-2016-%E3%81%A7-csv/10029a18-5b51-4e02-875b-ea2573f8bd0f){:target="_blank"}  
+
+- メリット：Win・MacのExcelで文字コードを判別できるようになる？（ダメぽい？）
+- 特徴：先頭の３バイトがあるか無いか
+- webアプリでCSVを使う場合はBOM付きでない方がよい
+    - PHP等が正常に処理できない可能性がある
+
+
+## OSによる違い
+
+[https://streamedup.com/help/331](https://streamedup.com/help/331){:target="_blank"}  
+
+- Windows
+    - 改行コード：CR
+- Mac
+    - 改行コード：CR+LF
+- MacのExcel等で編集→Windowsで開くと文字化けする
